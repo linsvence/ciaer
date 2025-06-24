@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Inteligência</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00FF00;
+      font-family: "Courier New", monospace;
+      margin: 0;
+      padding: 20px;
+    }
+    .tela {
+      border: 2px solid #00FF00;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .linha {
+      margin-bottom: 10px;
+    }
+    .logo {
+      height: 50px;
+      margin-bottom: 20px;
+    }
+    input[type="text"], select {
+      background: black;
+      color: #00FF00;
+      border: 1px solid #00FF00;
+      padding: 5px;
+      width: 100%;
+      font-family: "Courier New", monospace;
+    }
+    button {
+      background-color: black;
+      color: #00FF00;
+      border: 1px solid #00FF00;
+      padding: 6px 20px;
+      font-family: "Courier New", monospace;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #003300;
+    }
+    #saida {
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="tela">
+    <img src="logo.png" alt="Logo da Agência" class="logo">
+    <div class="linha">SISTEMA DE CONSULTA DE DADOS - INTELIGÊNCIA DIPLOMÁTICA</div>
+    <div class="linha">Responsável: Venceslau Lins</div>
+    <form id="form-consulta">
+      <div class="linha">Digite a identificação do alvo:</div>
+      <input type="text" id="id-alvo" placeholder="ID ou nome completo" required>
+
+      <div class="linha">Setor:</div>
+      <select id="setor">
+        <option>Contrainteligência</option>
+        <option>Vigilância Diplomática</option>
+        <option>Análise de Perfil</option>
+      </select>
+
+      <button type="submit">CONSULTAR</button>
+    </form>
+
+    <div id="saida" class="linha" style="margin-top: 30px;"></div>
+
+    <div class="linha" style="margin-top: 30px;">
+      &gt; Respondendo à sua pergunta: estamos abrindo uma vaga a partir de julho junto à Secretaria de Segurança da Embaixada da França. Haveria alguém de confiança que possa indicar?
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('form-consulta');
+    const saida = document.getElementById('saida');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      saida.textContent = "&gt; Gerando relatório para Embaixada...";
+
+      setTimeout(() => {
+        const nome = document.getElementById('id-alvo').value;
+        const setor = document.getElementById('setor').value;
+
+        const relatorio = `&gt; Acesso autorizado
+&gt; SISBIN // CLASSIFICAÇÃO: CONFIDENCIAL
+&gt; Identificação consultada: ${nome.toUpperCase()}
+&gt; Setor responsável: ${setor}
+&gt; Status: Ativo na base de dados diplomáticos
+&gt; Última movimentação: 04/06/2025 - Brasília
+&gt; Observação: Monitoramento contínuo sob autorização da Secretaria Especial de Segurança Externa.
+
+&gt; Fim do relatório.`;
+        saida.textContent = relatorio;
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
